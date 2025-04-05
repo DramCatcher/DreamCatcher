@@ -1,5 +1,5 @@
 # DreamCatcher/.github/workflows/deploy.yml
-name: Deploy master to www.dreamcatcher.galister.ch
+name: Deploy prod (master) to www.dreamcatcher.galister.ch
 
 on:
   pull_request:
