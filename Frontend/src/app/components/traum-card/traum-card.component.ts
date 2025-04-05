@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -13,4 +13,10 @@ export class TraumCardComponent {
   @Input() inhalt: string = '';
   @Input() bild: string = '';
   @Input() datum: string = '';
+
+  @Output() delete = new EventEmitter<void>();
+
+  onDelete() {
+    this.delete.emit();
+  }
 }
