@@ -17,6 +17,12 @@ jobs:
     runs-on: [self-hosted, Linux, X64, m245, webt.int.galister.ch, debian]
 
     steps:
+      - name: Install packages
+        run: |
+          sudo apt update
+          sudo apt install -y nodejs npm
+          sudo npm install -g @angular/cli
+
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
