@@ -17,4 +17,11 @@ export class TraumService {
     all.push(traum);
     localStorage.setItem(this.key, JSON.stringify(all));
   }
+
+  delete(index: number) {
+    const all = this.getAll();
+    all.splice(index, 1);
+    localStorage.setItem(this.key, JSON.stringify(all));
+  }
+
 }

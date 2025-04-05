@@ -1,0 +1,46 @@
+.card {
+  display: flex;
+  justify-content: space-between;
+  background: #eee;
+  border-radius: 12px;
+  padding: 1rem;
+  gap: 1rem;
+  margin-bottom: 1rem;
+
+  .text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+
+    h3 {
+      margin: 0;
+    }
+
+    .datum {
+      font-size: 0.8rem;
+      color: #666;
+    }
+
+    .delete-button {
+      align-self: flex-start;
+      background: transparent;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: opacity 0.2s;
+      margin-top: 1rem;
+
+      &:hover {
+        opacity: 1;
+        color: darkred;
+      }
+    }
+  }
+
+  .bild img {
+    max-width: 150px;
+    border-radius: 8px;
+  }
+}

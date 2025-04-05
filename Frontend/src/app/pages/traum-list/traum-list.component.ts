@@ -20,4 +20,12 @@ export class TraumListComponent implements OnInit {
   ngOnInit(): void {
     this.traeume = this.traumService.getAll();
   }
+
+  loeschen(index: number) {
+    if (confirm('Diesen Traum wirklich löschen?')) {
+      this.traumService.delete(index);
+      this.traeume = this.traumService.getAll();
+    }
+  }
+
 }

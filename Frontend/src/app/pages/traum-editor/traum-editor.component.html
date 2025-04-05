@@ -12,6 +12,10 @@
     <h3>Visualisiertes Bild</h3>
     <img [src]="bild" alt="Traumbild" />
   </div>
+  <div *ngIf="loading" class="spinner">
+    ✨ Dein Traum wird visualisiert ...
+  </div>
+
 
   <button (click)="speichern()" [disabled]="!titel || !inhalt">Speichern</button>
 </div>

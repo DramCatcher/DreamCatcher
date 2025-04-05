@@ -1,1 +1,14 @@
-<p>traum-card works!</p>
+<div class="card">
+  <div class="text">
+    <h3>{{ titel }}</h3>
+    <p class="datum">{{ datum | date:'short' }}</p>
+    <p>{{ inhalt }}</p>
+
+    <!-- Icon nach unten links in der Text-Spalte -->
+    <button class="delete-button" (click)="onDelete()">🗑</button>
+  </div>
+
+  <div class="bild" *ngIf="bild">
+    <img [src]="bild" alt="Traumbild" />
+  </div>
+</div>

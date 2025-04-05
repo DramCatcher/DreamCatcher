@@ -7,11 +7,12 @@
     Noch keine Träume gespeichert.
   </div>
 
-  <app-traum-card
-    *ngFor="let traum of traeume"
-    [titel]="traum.titel"
-    [inhalt]="traum.inhalt"
-    [bild]="traum.bild"
-    [datum]="traum.datum">
-  </app-traum-card>
+  <ng-container *ngFor="let traum of traeume; let i = index">
+    <app-traum-card
+      [titel]="traum.titel"
+      [inhalt]="traum.inhalt"
+      [bild]="traum.bild"
+      [datum]="traum.datum">
+    </app-traum-card>
+  </ng-container>
 </div>
