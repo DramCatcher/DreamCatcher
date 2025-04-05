@@ -1,6 +1,7 @@
 # DreamCatcher/.github/workflows/deploy_dev.yml
 # Deploying branch 'dev' to www.dreamcatcher.galister.ch
 #     runner runs on webt.int.galister.ch
+#     Just a test entry
 
 name: Deploy dev
 
