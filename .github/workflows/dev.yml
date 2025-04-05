@@ -1,12 +1,12 @@
-# DreamCatcher/.github/workflows/deploy.yml
-name: Deploy master to www.dreamcatcher.galister.ch
+# DreamCatcher/.github/workflows/dev.yml
+name: Deploy dev to www.dreamcatcher.galister.ch
 
 on:
   pull_request:
     types:
       - closed
     branches:
-      - master
+      - dev
 
 jobs:
   deploy:
@@ -16,11 +16,11 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
-          ref: master
+          ref: dev
 
-      - name: Checkout master and pull
+      - name: Checkout dev and pull
         run: |
-          git checkout master
+          git checkout dev
           git pull
 
       - name: Restart nginx
