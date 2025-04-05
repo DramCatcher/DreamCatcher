@@ -21,4 +21,3 @@ jobs:
         git pull
         git checkout master
         sudo systemctl restart nginx
-        EOF
