@@ -20,8 +20,9 @@ jobs:
       - name: Install packages
         run: |
           sudo apt update
-          sudo apt install -y nodejs npm
-          sudo npm install -g @angular/cli
+          sudo npm install -g n
+          sudo n latest
+#          sudo npm install -g @angular/cli
 
       - name: Checkout repo
         uses: actions/checkout@v4
