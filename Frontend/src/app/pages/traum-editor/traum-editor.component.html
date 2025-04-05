@@ -1,1 +1,11 @@
-<p>traum-editor works!</p>
+<div class="traum-editor">
+  <h2>Neuen Traum erfassen</h2>
+
+  <input [(ngModel)]="titel" placeholder="Titel" />
+  <textarea [(ngModel)]="inhalt" placeholder="Traumbeschreibung..."></textarea>
+
+  <!-- Später AI-Anbindung für Bild -->
+  <input [(ngModel)]="bild" placeholder="Bild-URL (optional)" />
+
+  <button (click)="speichern()">Speichern</button>
+</div>
