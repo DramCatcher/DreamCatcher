@@ -23,8 +23,20 @@ export class TraumEditorComponent {
   async visualisieren() {
     if (!this.inhalt.trim()) return;
     this.loading = true;
+
     const encodedPrompt = encodeURIComponent(this.inhalt);
-    this.bild = `https://image.pollinations.ai/prompt/${encodedPrompt}`;
+    const bildUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}`;
+
+    // Warte, bis das Bild geladen ist
+    const img = new Image();
+    img.src = bildUrl;
+
+    await new Promise((resolve) => {
+      img.onload = () => resolve(true);
+      img.onerror = () => resolve(true); // zur Sicherheit
+    });
+
+    this.bild = bildUrl;
     this.loading = false;
   }
 
