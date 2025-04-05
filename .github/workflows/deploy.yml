@@ -1,8 +1,12 @@
 # DreamCatcher/.github/workflows/deploy.yml
+run-name: Deploy to www.dreamcatcher.galister.ch
+
 on:
-  push:
+  pull_request:
+    types:
+      - closed
     branches:
-      - main
+      - master
 
 jobs:
   deploy:
