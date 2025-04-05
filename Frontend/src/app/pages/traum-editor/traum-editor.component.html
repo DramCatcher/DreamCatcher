@@ -1,11 +1,17 @@
 <div class="traum-editor">
-  <h2>Neuen Traum erfassen</h2>
+  <h2>Traum erfassen</h2>
 
   <input [(ngModel)]="titel" placeholder="Titel" />
   <textarea [(ngModel)]="inhalt" placeholder="Traumbeschreibung..."></textarea>
 
-  <!-- Später AI-Anbindung für Bild -->
-  <input [(ngModel)]="bild" placeholder="Bild-URL (optional)" />
+  <button (click)="visualisieren()" [disabled]="loading || !inhalt">
+    {{ loading ? 'Visualisiert...' : 'Visualisieren' }}
+  </button>
 
-  <button (click)="speichern()">Speichern</button>
+  <div *ngIf="bild">
+    <h3>Visualisiertes Bild</h3>
+    <img [src]="bild" alt="Traumbild" />
+  </div>
+
+  <button (click)="speichern()" [disabled]="!titel || !inhalt">Speichern</button>
 </div>

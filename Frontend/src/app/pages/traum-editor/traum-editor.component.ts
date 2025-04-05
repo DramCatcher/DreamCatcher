@@ -15,9 +15,18 @@ import { Traum } from '../../models/traum';
 export class TraumEditorComponent {
   titel = '';
   inhalt = '';
-  bild = ''; // z.B. Platzhalter oder AI-Bild später
+  bild = '';
+  loading = false;
 
   constructor(private traumService: TraumService, private router: Router) {}
+
+  async visualisieren() {
+    if (!this.inhalt.trim()) return;
+    this.loading = true;
+    const encodedPrompt = encodeURIComponent(this.inhalt);
+    this.bild = `https://image.pollinations.ai/prompt/${encodedPrompt}`;
+    this.loading = false;
+  }
 
   speichern() {
     const traum: Traum = {
@@ -28,6 +37,6 @@ export class TraumEditorComponent {
     };
 
     this.traumService.add(traum);
-    this.router.navigate(['/']); // Zurück zur Liste
+    this.router.navigate(['/']);
   }
 }
