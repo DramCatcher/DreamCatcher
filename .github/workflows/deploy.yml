@@ -1,0 +1,19 @@
+# DreamCatcher/.github/workflows/deploy.yml
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: [self-hosted, Linux, X64, m245, webt.int.galister.ch, debian]
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
+    - name: Deploy to webt.int.galister.ch
+      run: |
+        git pull
+        systemctl restart nginx
+        EOF
