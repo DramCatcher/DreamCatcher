@@ -1,0 +1,21 @@
+<div class="traum-editor">
+  <h2>Traum erfassen</h2>
+
+  <input [(ngModel)]="titel" placeholder="Titel" />
+  <textarea [(ngModel)]="inhalt" placeholder="Traumbeschreibung..."></textarea>
+
+  <button (click)="visualisieren()" [disabled]="loading || !inhalt">
+    {{ loading ? 'Visualisiert...' : 'Visualisieren' }}
+  </button>
+
+  <div *ngIf="loading" class="spinner-container">
+    <div class="spinner"></div>
+  </div>
+
+  <div *ngIf="bild">
+    <h3>Deine Traumvisualisierung</h3>
+    <img [src]="bild" alt="Traumbild" />
+  </div>
+
+  <button (click)="speichern()" [disabled]="!titel || !inhalt">Speichern</button>
+</div>
