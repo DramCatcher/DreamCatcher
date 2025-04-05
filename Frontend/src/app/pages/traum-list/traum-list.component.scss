@@ -1,0 +1,22 @@
+.traum-list {
+  max-width: 800px;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  .neuer-traum {
+    align-self: flex-end;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    background: #40276c;
+    color: white;
+    border-radius: 8px;
+  }
+
+  .leer {
+    text-align: center;
+    color: #888;
+    font-style: italic;
+  }
+}
