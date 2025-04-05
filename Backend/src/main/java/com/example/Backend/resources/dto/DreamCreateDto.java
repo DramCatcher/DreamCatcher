@@ -2,7 +2,7 @@ package com.example.Backend.resources.dto;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import lombok.Data;
-import org.antlr.v4.runtime.misc.NotNull;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.web.multipart.MultipartFile;
 
 @Schema(description = "DTO zum Erstellen eines neuen Traums")
