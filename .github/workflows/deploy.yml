@@ -19,5 +19,6 @@ jobs:
     - name: Deploy to webt.int.galister.ch
       run: |
         git pull
-        systemctl restart nginx
+        git checkout master
+        sudo systemctl restart nginx
         EOF
