@@ -1,11 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-traum-card',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './traum-card.component.html',
-  styleUrl: './traum-card.component.css'
+  styleUrls: ['./traum-card.component.scss']
 })
 export class TraumCardComponent {
-
+  @Input() titel: string = '';
+  @Input() inhalt: string = '';
+  @Input() bild: string = '';
+  @Input() datum: string = '';
 }

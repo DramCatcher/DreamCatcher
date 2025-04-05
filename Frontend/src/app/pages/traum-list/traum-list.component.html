@@ -1,1 +1,17 @@
-<p>traum-list works!</p>
+<div class="traum-list">
+  <h2>Gespeicherte Träume</h2>
+
+  <a routerLink="/neu" class="neuer-traum">+ Neuen Traum erfassen</a>
+
+  <div *ngIf="traeume.length === 0" class="leer">
+    Noch keine Träume gespeichert.
+  </div>
+
+  <app-traum-card
+    *ngFor="let traum of traeume"
+    [titel]="traum.titel"
+    [inhalt]="traum.inhalt"
+    [bild]="traum.bild"
+    [datum]="traum.datum">
+  </app-traum-card>
+</div>
