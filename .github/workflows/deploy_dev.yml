@@ -6,24 +6,16 @@
 name: Deploy dev
 
 on:
-  pull_request:
+  workflow_run:
+    workflows: ["Install packages before deployment"]
     types:
-      - closed
-    branches:
-      - dev
+      - completed
 
 jobs:
   deploy:
     runs-on: [self-hosted, Linux, X64, m245, webt.int.galister.ch, debian]
 
     steps:
-      - name: Install packages
-        run: |
-          sudo apt update
-          sudo npm install -g n
-          sudo n latest
-#          sudo npm install -g @angular/cli
-
       - name: Checkout repo
         uses: actions/checkout@v4
         with:

@@ -1,0 +1,24 @@
+# DreamCatcher/.github/workflows/install_packages.yml
+
+name: Install packages before deployment
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - dev
+      - main
+
+jobs:
+  deploy:
+    runs-on: [self-hosted, Linux, X64, m245, webt.int.galister.ch, debian]
+
+    steps:
+      - name: Install packages
+        run: |
+          sudo apt update
+          sudo apt install curl -y
+          sudo curl -fsSL https://deb.nodesource.com/setup_20.x | sudo bash -
+          sudo apt install nodejs -y
+          sudo npm install -g @angular/cli
