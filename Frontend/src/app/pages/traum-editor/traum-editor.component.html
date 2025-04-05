@@ -8,14 +8,14 @@
     {{ loading ? 'Visualisiert...' : 'Visualisieren' }}
   </button>
 
-  <div *ngIf="bild">
-    <h3>Visualisiertes Bild</h3>
-    <img [src]="bild" alt="Traumbild" />
-  </div>
-  <div *ngIf="loading" class="spinner">
-    ✨ Dein Traum wird visualisiert ...
+  <div *ngIf="loading" class="spinner-container">
+    <div class="spinner"></div>
   </div>
 
+  <div *ngIf="bild">
+    <h3>Deine Traumvisualisierung</h3>
+    <img [src]="bild" alt="Traumbild" />
+  </div>
 
   <button (click)="speichern()" [disabled]="!titel || !inhalt">Speichern</button>
 </div>

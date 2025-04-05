@@ -12,7 +12,8 @@
       [titel]="traum.titel"
       [inhalt]="traum.inhalt"
       [bild]="traum.bild"
-      [datum]="traum.datum">
+      [datum]="traum.datum"
+      (delete)="loeschen(i)">
     </app-traum-card>
   </ng-container>
 </div>

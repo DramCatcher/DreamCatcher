@@ -28,8 +28,32 @@
     border: 2px solid #ddd;
   }
 
+  .spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+  }
+
   .spinner {
-    font-style: italic;
-    color: #888;
+    width: 48px;
+    height: 48px;
+    border: 6px solid transparent;
+    border-top: 6px solid #f78acb;
+    border-right: 6px solid #65e1e2;
+    border-bottom: 6px solid #a974f6;
+    border-left: 6px solid #fcb169;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
   }
 }
