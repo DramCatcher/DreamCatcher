@@ -21,6 +21,13 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+        
+      - name: Build static files of Angular project
+        run: cd Frontend && ng build --prod
+
+      - name: Show files in dist
+        run: cd dist/DreamCatcherFrontend/ && ls -lsa
 
       - name: Restart nginx
         run: sudo systemctl restart nginx
+  
