@@ -24,10 +24,10 @@ jobs:
         run:  sudo apt install tree curl -y
 
       - name: Prepare - Install OpenJDK
-        run: sudo apt install openjdk-17-jdk
+        run: sudo apt install openjdk-17-jdk -y
 
       - name: Prepare - Install maven
-        run: sudo apt install maven
+        run: sudo apt install maven -y
 
       - name: Prepare - Get installer of node.js
         run: sudo curl -fsSL https://deb.nodesource.com/setup_20.x | sudo bash -
