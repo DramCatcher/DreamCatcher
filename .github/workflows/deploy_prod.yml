@@ -16,10 +16,31 @@ jobs:
     runs-on: [self-hosted, Linux, X64, m245, webt.int.galister.ch, debian]
 
     steps:
+      - name: Call apt update
+        run: sudo apt update
+      
+      - name: Install curl
+        run:  sudo apt install curl -y
+
+      - name: Get installer of node.js
+        run: sudo curl -fsSL https://deb.nodesource.com/setup_20.x | sudo bash -
+      
+      - name: Install node.js
+        run: sudo apt install nodejs -y
+
+      - name: Install angular cli
+        run: sudo npm install -g @angular/cli
+
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+        
+      - name: Build static files of Angular project
+        run: cd Frontend && npm install && ng build --prod
+
+      - name: Show files in dist
+        run: cd dist/DreamCatcherFrontend/ && ls -lsa
 
       - name: Restart nginx
         run: sudo systemctl restart nginx
