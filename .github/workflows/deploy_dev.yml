@@ -35,7 +35,7 @@ jobs:
       - name: Prepare - Install node.js
         run: sudo apt install nodejs -y
 
-      - name: Prepare - nstall angular cli
+      - name: Prepare - Install angular cli
         run: sudo npm install -g @angular/cli
 
       - name: Prepare - Checkout repo
