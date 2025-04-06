@@ -1,7 +1,6 @@
 # DreamCatcher/.github/workflows/deploy_dev.yml
 # Deploying branch 'dev' to www.dreamcatcher.galister.ch
 #     runner runs on webt.int.galister.ch
-#     Just a test entry
 
 name: Deploy dev
 
@@ -44,7 +43,7 @@ jobs:
           fetch-depth: 0
 
       - name: Backend - Build backend project
-        run: mvn clean package
+        run: cd Backend && mvn clean package
 
       - name: Searching in backend directories
         run: cd Backend && tree
