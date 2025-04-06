@@ -42,11 +42,17 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Backend - Copy project into local directory
+        run: sudo mkdir -p /opt/dreamcatcher/backend && sudo cp Backend/* /opt/dreamcatcher/backend/
+
+      - name: Backend - Set permissions of local dir and files
+        run: sudo chown -R /opt/dreamcatcher/backend dc_backend:dc_backend
+
       - name: Backend - Build backend project
-        run: cd Backend && mvn clean package
+        run: cd /opt/dreamcatcher/backend && mvn clean package
 
       - name: Searching in backend directories
-        run: cd Backend && tree
+        run: cd /opt/dreamcatcher/backend && tree
 
       - name: Frontend - Build static files of Angular project
         run: cd Frontend && npm install && ng build --configuration production
