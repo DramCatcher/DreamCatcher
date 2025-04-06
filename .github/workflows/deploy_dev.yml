@@ -46,7 +46,7 @@ jobs:
         run: sudo mkdir -p /opt/dreamcatcher/backend && sudo cp -r Backend/* /opt/dreamcatcher/backend/
 
       - name: Backend - Set permissions of local dir and files
-        run: sudo chown -R /opt/dreamcatcher/backend dc_backend:dc_backend
+        run: sudo chown -R dc_backend:dc_backend /opt/dreamcatcher/backend
 
       - name: Backend - Build backend project
         run: cd /opt/dreamcatcher/backend && mvn clean package
