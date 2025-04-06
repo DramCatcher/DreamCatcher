@@ -56,7 +56,7 @@ jobs:
 
       - name: Backend - Enabling backend as systemd
         run: |
-          BACKEND_FILE=$(ls /opt/dreamcatcher/backend/target | grep ".jar$") && echo "[Unit]
+          BACKEND_FILE=$(ls /opt/dreamcatcher/backend/target | grep ".jar$") && sudo echo "[Unit]
           Description=Dreamcatcher Backend Service
           After=network.target
 
