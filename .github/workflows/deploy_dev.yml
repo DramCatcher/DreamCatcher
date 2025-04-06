@@ -63,7 +63,7 @@ jobs:
           [Service]
           User=backend_user
           Group=backend_user
-          ExecStart=/usr/bin/java -jar /opt/dreamcatcher/backend/$BACKEND_FILE
+          ExecStart=/usr/bin/java -jar /opt/dreamcatcher/backend/target/$BACKEND_FILE
           WorkingDirectory=/opt/backend
           Restart=always
 
