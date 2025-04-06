@@ -49,7 +49,7 @@ jobs:
         run: sudo chown -R dc_backend:dc_backend /opt/dreamcatcher/backend
 
       - name: Backend - Build backend project
-        run: cd /opt/dreamcatcher/backend && mvn clean package
+        run: cd /opt/dreamcatcher/backend && sudo mvn clean package
 
       - name: Searching in backend directories
         run: cd /opt/dreamcatcher/backend && tree
