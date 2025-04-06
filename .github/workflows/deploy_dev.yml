@@ -1,15 +1,15 @@
 # DreamCatcher/.github/workflows/deploy_dev.yml
 # Deploying branch 'dev' to www.dreamcatcher.galister.ch
 #     runner runs on webt.int.galister.ch
+#     Just a test entry
 
 name: Deploy dev
 
 on:
-  pull_request:
+  workflow_run:
+    workflows: ["Install packages before deployment"]
     types:
-      - closed
-    branches:
-      - dev
+      - completed
 
 jobs:
   deploy:
@@ -20,6 +20,13 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+        
+      - name: Build static files of Angular project
+        run: cd Frontend && ng build --prod
+
+      - name: Show files in dist
+        run: cd dist/DreamCatcherFrontend/ && ls -lsa
 
       - name: Restart nginx
         run: sudo systemctl restart nginx
+  
