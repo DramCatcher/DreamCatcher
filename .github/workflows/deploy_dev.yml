@@ -51,9 +51,6 @@ jobs:
       - name: Backend - Set permissions of local dir and files
         run: sudo chown -R dc_backend:dc_backend /opt/dreamcatcher/backend
 
-      - name: Searching in backend directories
-        run: cd /opt/dreamcatcher/backend && tree
-
       - name: Backend - Enabling backend as systemd
         run: |
           BACKEND_FILE=$(ls /opt/dreamcatcher/backend/target | grep ".jar$") && sudo echo "[Unit]
@@ -75,6 +72,9 @@ jobs:
 
       - name: Backend - Enable backend service
         run: sudo systemctl enable dc_backend.service && sudo systemctl start dc_backend.service
+
+      - name: Backend - Check if backend is running
+        run: if ! systemctl is-active --quiet dc_backend.service; then exit 1; else exit 0; fi
 
       - name: Frontend - Build static files of Angular project
         run: cd Frontend && npm install && ng build --configuration production
