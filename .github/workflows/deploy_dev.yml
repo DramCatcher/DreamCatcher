@@ -41,10 +41,10 @@ jobs:
         run: cd Frontend && npm install && ng build --configuration production
 
       - name: Empty website-directory and copy new files
-        run: rm -r /var/www/dreamcatcher.galister.ch/* && cp Frontend/dist/dream-catcher/browser/* /var/www/dreamcatcher.galister.ch/
+        run: sudo rm -r /var/www/dreamcatcher.galister.ch/* && sudo cp Frontend/dist/dream-catcher/browser/* /var/www/dreamcatcher.galister.ch/
 
       - name: Correct permissions of new files
-        run: chown -R www-data:www-data /var/www/dreamcatcher.galister.ch
+        run: sudo chown -R www-data:www-data /var/www/dreamcatcher.galister.ch
 
       - name: Restart nginx
         run: sudo systemctl restart nginx
