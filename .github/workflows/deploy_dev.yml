@@ -43,7 +43,7 @@ jobs:
           fetch-depth: 0
 
       - name: Backend - Copy project into local directory
-        run: sudo mkdir -p /opt/dreamcatcher/backend && sudo cp Backend/* /opt/dreamcatcher/backend/
+        run: sudo mkdir -p /opt/dreamcatcher/backend && sudo cp -r Backend/* /opt/dreamcatcher/backend/
 
       - name: Backend - Set permissions of local dir and files
         run: sudo chown -R /opt/dreamcatcher/backend dc_backend:dc_backend
