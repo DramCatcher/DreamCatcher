@@ -16,31 +16,46 @@ jobs:
     runs-on: [self-hosted, Linux, X64, m245, webt.int.galister.ch, debian]
 
     steps:
-      - name: Call apt update
+      - name: Prepare - Call apt update
         run: sudo apt update
       
-      - name: Install curl
-        run:  sudo apt install curl -y
+      - name: Prepare - Install curl
+        run:  sudo apt install tree curl -y
 
-      - name: Get installer of node.js
+      - name: Prepare - Install OpenJDK
+        run: sudo apt install openjdk-17-jdk
+
+      - name: Prepare - Install maven
+        run: sudo apt install maven
+
+      - name: Prepare - Get installer of node.js
         run: sudo curl -fsSL https://deb.nodesource.com/setup_20.x | sudo bash -
       
-      - name: Install node.js
+      - name: Prepare - Install node.js
         run: sudo apt install nodejs -y
 
-      - name: Install angular cli
+      - name: Prepare - nstall angular cli
         run: sudo npm install -g @angular/cli
 
-      - name: Checkout repo
+      - name: Prepare - Checkout repo
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-        
-      - name: Build static files of Angular project
+
+      - name: Backend - Build backend project
+        run: mvn clean package
+
+      - name: Searching in backend directories
+        run: cd Backend && tree
+
+      - name: Frontend - Build static files of Angular project
         run: cd Frontend && npm install && ng build --configuration production
 
-      - name: Show files in dist
-        run: cd dist/DreamCatcherFrontend/ && ls -lsa
+      - name: Frontend - Empty website-directory and copy new files
+        run: sudo rm -r /var/www/dreamcatcher.galister.ch/* && sudo cp Frontend/dist/dream-catcher/browser/* /var/www/dreamcatcher.galister.ch/
 
-      - name: Restart nginx
+      - name: Frontend - Correct permissions of new files
+        run: sudo chown -R www-data:www-data /var/www/dreamcatcher.galister.ch
+
+      - name: Frontend - Restart nginx
         run: sudo systemctl restart nginx
