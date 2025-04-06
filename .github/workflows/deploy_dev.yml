@@ -45,14 +45,36 @@ jobs:
       - name: Backend - Copy project into local directory
         run: sudo mkdir -p /opt/dreamcatcher/backend && sudo cp -r Backend/* /opt/dreamcatcher/backend/
 
-      - name: Backend - Set permissions of local dir and files
-        run: sudo chown -R dc_backend:dc_backend /opt/dreamcatcher/backend
-
       - name: Backend - Build backend project
         run: cd /opt/dreamcatcher/backend && sudo mvn clean package
 
+      - name: Backend - Set permissions of local dir and files
+        run: sudo chown -R dc_backend:dc_backend /opt/dreamcatcher/backend
+
       - name: Searching in backend directories
         run: cd /opt/dreamcatcher/backend && tree
+
+      - name: Backend - Enabling backend as systemd
+        run: |
+          BACKEND_FILE=$(ls /opt/dreamcatcher/backend/target | grep ".jar$") && echo "[Unit]
+          Description=Dreamcatcher Backend Service
+          After=network.target
+
+          [Service]
+          User=backend_user
+          Group=backend_user
+          ExecStart=/usr/bin/java -jar /opt/dreamcatcher/backend/$BACKEND_FILE
+          WorkingDirectory=/opt/backend
+          Restart=always
+
+          [Install]
+          WantedBy=multi-user.target" > /etc/systemd/system/dc_backend.service
+      
+      - name: Backend - Reload daemon
+        run: sudo systemctl daemon-reload
+
+      - name: Backend - Enable backend service
+        run: sudo systemctl enable dc_backend.service && sudo systemctl start dc_backend.service
 
       - name: Frontend - Build static files of Angular project
         run: cd Frontend && npm install && ng build --configuration production
