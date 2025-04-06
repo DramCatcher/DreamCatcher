@@ -41,8 +41,7 @@ jobs:
         run: cd Frontend && npm install && ng build --configuration production
 
       - name: Show working directory
-        run: cd Frontend && pwd && ls -lsa
-#        run: cd dist/DreamCatcherFrontend/ && ls -lsa
+        run: cd Frontend/dist/DreamCatcherFrontend && ls -lsa
 
       - name: Restart nginx
         run: sudo systemctl restart nginx
