@@ -34,7 +34,7 @@ jobs:
       - name: Prepare - Install node.js
         run: sudo apt install nodejs -y
 
-      - name: Prepare - nstall angular cli
+      - name: Prepare - Install angular cli
         run: sudo npm install -g @angular/cli
 
       - name: Prepare - Checkout repo
@@ -43,7 +43,7 @@ jobs:
           fetch-depth: 0
 
       - name: Backend - Build backend project
-        run: mvn clean package
+        run: cd Backend && mvn clean package
 
       - name: Searching in backend directories
         run: cd Backend && tree
