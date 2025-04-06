@@ -61,10 +61,10 @@ jobs:
           After=network.target
 
           [Service]
-          User=backend_user
-          Group=backend_user
+          User=dc_backend
+          Group=dc_backend
           ExecStart=/usr/bin/java -jar /opt/dreamcatcher/backend/target/$BACKEND_FILE
-          WorkingDirectory=/opt/backend
+          WorkingDirectory=/opt/dreamcatcher/backend
           Restart=always
 
           [Install]
