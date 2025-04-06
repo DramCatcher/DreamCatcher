@@ -37,7 +37,7 @@ jobs:
           fetch-depth: 0
         
       - name: Build static files of Angular project
-        run: cd Frontend && npm install && ng build --prod
+        run: cd Frontend && npm install && ng build --configuration production
 
       - name: Show files in dist
         run: cd dist/DreamCatcherFrontend/ && ls -lsa
