@@ -1,32 +1,90 @@
 # DreamCatcher/.github/workflows/deploy_dev.yml
 # Deploying branch 'dev' to www.dreamcatcher.galister.ch
 #     runner runs on webt.int.galister.ch
-#     Just a test entry
 
 name: Deploy dev
 
 on:
-  workflow_run:
-    workflows: ["Install packages before deployment"]
+  pull_request:
     types:
-      - completed
+      - closed
+    branches:
+      - dev
 
 jobs:
   deploy:
     runs-on: [self-hosted, Linux, X64, m245, webt.int.galister.ch, debian]
 
     steps:
-      - name: Checkout repo
+      - name: Prepare - Call apt update
+        run: sudo apt update
+      
+      - name: Prepare - Install curl
+        run:  sudo apt install tree curl -y
+
+      - name: Prepare - Install OpenJDK
+        run: sudo apt install openjdk-17-jdk -y
+
+      - name: Prepare - Install maven
+        run: sudo apt install maven -y
+
+      - name: Prepare - Get installer of node.js
+        run: sudo curl -fsSL https://deb.nodesource.com/setup_20.x | sudo bash -
+      
+      - name: Prepare - Install node.js
+        run: sudo apt install nodejs -y
+
+      - name: Prepare - Install angular cli
+        run: sudo npm install -g @angular/cli
+
+      - name: Prepare - Checkout repo
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-        
-      - name: Build static files of Angular project
-        run: cd Frontend && npm install && ng build --prod
 
-      - name: Show files in dist
-        run: cd dist/DreamCatcherFrontend/ && ls -lsa
+      - name: Backend - Copy project into local directory
+        run: sudo mkdir -p /opt/dreamcatcher/backend && sudo cp -r Backend/* /opt/dreamcatcher/backend/
 
-      - name: Restart nginx
+      - name: Backend - Build backend project
+        run: cd /opt/dreamcatcher/backend && sudo mvn clean package
+
+      - name: Backend - Set permissions of local dir and files
+        run: sudo chown -R dc_backend:dc_backend /opt/dreamcatcher/backend
+
+      - name: Backend - Enabling backend as systemd
+        run: |
+          BACKEND_FILE=$(ls /opt/dreamcatcher/backend/target | grep ".jar$") && sudo echo "[Unit]
+          Description=Dreamcatcher Backend Service
+          After=network.target
+
+          [Service]
+          User=dc_backend
+          Group=dc_backend
+          ExecStart=/usr/bin/java -jar /opt/dreamcatcher/backend/target/$BACKEND_FILE
+          WorkingDirectory=/opt/dreamcatcher/backend
+          Restart=always
+
+          [Install]
+          WantedBy=multi-user.target" | sudo tee /etc/systemd/system/dc_backend.service > /dev/null
+      
+      - name: Backend - Reload daemon
+        run: sudo systemctl daemon-reload
+
+      - name: Backend - Enable backend service
+        run: sudo systemctl enable dc_backend.service && sudo systemctl start dc_backend.service
+
+      - name: Backend - Check if backend is running
+        run: if ! systemctl is-active --quiet dc_backend.service; then exit 1; else exit 0; fi
+
+      - name: Frontend - Build static files of Angular project
+        run: cd Frontend && npm install && ng build --configuration production
+
+      - name: Frontend - Empty website-directory and copy new files
+        run: sudo rm -r /var/www/dreamcatcher.galister.ch/* && sudo cp Frontend/dist/dream-catcher/browser/* /var/www/dreamcatcher.galister.ch/
+
+      - name: Frontend - Correct permissions of new files
+        run: sudo chown -R www-data:www-data /var/www/dreamcatcher.galister.ch
+
+      - name: Frontend - Restart nginx
         run: sudo systemctl restart nginx
   
