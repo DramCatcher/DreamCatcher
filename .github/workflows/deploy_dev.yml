@@ -68,7 +68,7 @@ jobs:
           Restart=always
 
           [Install]
-          WantedBy=multi-user.target" > /etc/systemd/system/dc_backend.service
+          WantedBy=multi-user.target" | sudo tee /etc/systemd/system/dc_backend.service > /dev/null
       
       - name: Backend - Reload daemon
         run: sudo systemctl daemon-reload
