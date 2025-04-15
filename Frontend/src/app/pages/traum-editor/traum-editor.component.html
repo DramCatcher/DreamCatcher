@@ -2,9 +2,16 @@
   <h2>Traum erfassen</h2>
 
   <input [(ngModel)]="titel" placeholder="Titel" />
-  <textarea [(ngModel)]="inhalt" placeholder="Traumbeschreibung..."></textarea>
+  <div *ngIf="!titel.trim() && versuchZuSpeichern" class="fehlermeldung">
+    Bitte gib einen Titel ein.
+  </div>
 
-  <button (click)="visualisieren()" [disabled]="loading || !inhalt">
+  <textarea [(ngModel)]="inhalt" placeholder="Traumbeschreibung..."></textarea>
+  <div *ngIf="!inhalt.trim() && versuchZuSpeichern" class="fehlermeldung">
+    Bitte gib eine Beschreibung ein.
+  </div>
+
+  <button (click)="visualisieren()" [disabled]="loading || !inhalt.trim()">
     {{ loading ? 'Visualisiert...' : 'Visualisieren' }}
   </button>
 
@@ -17,5 +24,5 @@
     <img [src]="bild" alt="Traumbild" />
   </div>
 
-  <button (click)="speichern()" [disabled]="!titel || !inhalt">Speichern</button>
+  <button (click)="speichern()">Speichern</button>
 </div>
