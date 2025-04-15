@@ -17,9 +17,9 @@ public class DreamCreateDto {
     @Schema(description = "Inhalt des Traums", example = "Ich flog über eine Stadt...")
     private String content;
 
-    @NotNull
-    @Schema(description = "Zeitstempel im ISO-Format", example = "2025-03-29T15:02:00")
-    private String timestamp;
+//    @NotNull
+//    @Schema(description = "Zeitstempel im ISO-Format", example = "2025-03-29T15:02:00")
+//    private String timestamp;
 
     @Schema(description = "Optionales Bild im Multipart-Format")
     private MultipartFile img;

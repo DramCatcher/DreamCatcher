@@ -14,19 +14,16 @@ public interface DreamMapper {
     @Mapping(source = "id", target = "id")
     @Mapping(source = "title", target = "title")
     @Mapping(source = "content", target = "content")
-    @Mapping(source = "timestamp", target = "timestamp")
     @Mapping(target = "imgBase64", ignore = true)
     DreamShowDto toShowDto(Dream dream);
 
     @Mapping(source = "title", target = "title")
     @Mapping(source = "content", target = "content")
-    @Mapping(source = "timestamp", target = "timestamp")
     @Mapping(target = "img", ignore = true)
     Dream toEntity(DreamCreateDto dto);
 
     @Mapping(source = "title", target = "title")
     @Mapping(source = "content", target = "content")
-    @Mapping(source = "timestamp", target = "timestamp")
     @Mapping(target = "img", ignore = true)
     void updateEntity(DreamUpdateDto dto, @MappingTarget Dream dream);
 }

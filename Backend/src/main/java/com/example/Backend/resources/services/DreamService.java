@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -47,7 +48,18 @@ public class DreamService {
      */
     public DreamShowDto create(DreamCreateDto dto) {
         Dream dream = dreamMapper.toEntity(dto);
-        Dream savedDream = this.dreamRepository.save(dream);
+        dream.setTimestamp(LocalDateTime.now());
+
+        // Bild aus dem MultipartFile setzen
+        if (dto.getImg() != null && !dto.getImg().isEmpty()) {
+            try {
+                dream.setImg(dto.getImg().getBytes());
+            } catch (IOException e) {
+                throw new RuntimeException("Fehler beim Verarbeiten des Bildes", e);
+            }
+        }
+
+        Dream savedDream = dreamRepository.save(dream);
         return dreamMapper.toShowDto(savedDream);
     }
 
