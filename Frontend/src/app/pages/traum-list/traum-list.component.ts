@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { TraumService } from '../../services/traum.service';
 import { Traum } from '../../models/traum';
 import { TraumCardComponent } from '../../components/traum-card/traum-card.component';
@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-traum-list',
   standalone: true,
-  imports: [CommonModule, TraumCardComponent, RouterModule],
+  imports: [CommonModule, TraumCardComponent, RouterModule, NgOptimizedImage],
   templateUrl: './traum-list.component.html',
   styleUrls: ['./traum-list.component.scss']
 })
