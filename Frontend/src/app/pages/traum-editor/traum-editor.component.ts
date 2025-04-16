@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { TraumService } from '../../services/traum.service';
 import { Traum } from '../../models/traum';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-traum-editor',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink, RouterModule],
   templateUrl: './traum-editor.component.html',
   styleUrls: ['./traum-editor.component.scss']
 })

@@ -7,6 +7,10 @@
     Noch keine Träume gespeichert.
   </div>
 
+  <div class="logo-container">
+    <img ngSrc="Logo.png" alt="Logo" height="50" width="50" />
+  </div>
+
   <ng-container *ngFor="let traum of traeume; let i = index">
     <app-traum-card
       [titel]="traum.titel"
