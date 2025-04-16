@@ -1,6 +1,5 @@
 # DreamCatcher/.github/workflows/deploy_prod.yml
 # Deploying branch 'master' to www.dreamcatcher.galister.ch
-#     runner runs on webt.int.galister.ch
 
 name: Deploy prod
 
