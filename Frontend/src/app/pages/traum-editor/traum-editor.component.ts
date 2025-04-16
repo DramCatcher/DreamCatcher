@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { TraumService } from '../../services/traum.service';
 import { Traum } from '../../models/traum';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-traum-editor',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink, RouterModule],
   templateUrl: './traum-editor.component.html',
   styleUrls: ['./traum-editor.component.scss']
 })
@@ -17,6 +18,7 @@ export class TraumEditorComponent {
   inhalt = '';
   bild = '';
   loading = false;
+  versuchZuSpeichern = false;
 
   constructor(private traumService: TraumService, private router: Router) {}
 
@@ -27,7 +29,6 @@ export class TraumEditorComponent {
     const encodedPrompt = encodeURIComponent(this.inhalt);
     const bildUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}`;
 
-    // Warte, bis das Bild geladen ist
     const img = new Image();
     img.src = bildUrl;
 
@@ -41,6 +42,12 @@ export class TraumEditorComponent {
   }
 
   speichern() {
+    this.versuchZuSpeichern = true;
+
+    if (!this.titel.trim() || !this.inhalt.trim()) {
+      return; // Fehlermeldung wird im HTML angezeigt
+    }
+
     const traum: Traum = {
       titel: this.titel,
       inhalt: this.inhalt,
