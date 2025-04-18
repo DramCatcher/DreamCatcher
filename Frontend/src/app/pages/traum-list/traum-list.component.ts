@@ -15,16 +15,23 @@ import { RouterModule } from '@angular/router';
 export class TraumListComponent implements OnInit {
   traeume: Traum[] = [];
 
-  constructor(private traumService: TraumService) {}
-
-  ngOnInit(): void {
-    this.traeume = this.traumService.getAll();
+  constructor(private traumService: TraumService) {
   }
 
-  loeschen(index: number) {
-    if (confirm('Diesen Traum wirklich löschen?')) {
-      this.traumService.delete(index);
-      this.traeume = this.traumService.getAll();
+  ngOnInit(): void {
+    this.loadDreams()
+  }
+
+  loadDreams() {
+    this.traumService.getAll().subscribe(traume => {
+      this.traeume = traume
+    });
+  }
+
+  deleteDream(id?: number) {
+    if (id && confirm('Diesen Traum wirklich löschen?')) {
+      this.traumService.delete(id);
+      this.loadDreams()
     }
   }
 
