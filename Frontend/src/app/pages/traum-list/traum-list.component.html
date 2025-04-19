@@ -8,16 +8,16 @@
   </div>
 
   <div class="logo-container">
-    <img ngSrc="Logo.png" alt="Logo" height="50" width="50" />
+    <img ngSrc="Logo.png" alt="Logo" height="50" width="50"/>
   </div>
 
   <ng-container *ngFor="let traum of traeume; let i = index">
     <app-traum-card
       [titel]="traum.titel"
-      [inhalt]="traum.inhalt"
-      [bild]="traum.bild"
-      [datum]="traum.datum"
-      (delete)="loeschen(i)">
+      [inhalt]="traum.content"
+      [bild]="traum.imgBase64"
+      [datum]="traum.timestamp"
+      (delete)="deleteDream(traum.id)">
     </app-traum-card>
   </ng-container>
 </div>

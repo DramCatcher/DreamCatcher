@@ -1,6 +1,7 @@
 export interface Traum {
+  id?: number;
   titel: string;
-  inhalt: string;
-  bild: string;
-  datum: string;
+  content: string;
+  timestamp: string;
+  imgBase64: string;
 }

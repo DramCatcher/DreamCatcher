@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 import { TraumService } from '../../services/traum.service';
-import { Traum } from '../../models/traum';
-import { RouterModule } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-traum-editor',
@@ -20,25 +19,24 @@ export class TraumEditorComponent {
   loading = false;
   versuchZuSpeichern = false;
 
-  constructor(private traumService: TraumService, private router: Router) {}
+  constructor(private traumService: TraumService, private router: Router, private http: HttpClient) {
+  }
 
   async visualisieren() {
     if (!this.inhalt.trim()) return;
     this.loading = true;
+    this.bild = ''
 
     const encodedPrompt = encodeURIComponent(this.inhalt);
-    const bildUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}`;
-
-    const img = new Image();
-    img.src = bildUrl;
-
-    await new Promise((resolve) => {
-      img.onload = () => resolve(true);
-      img.onerror = () => resolve(true); // zur Sicherheit
+    const imageUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}`;
+    this.http.get(imageUrl, { responseType: 'blob' }).subscribe(blob => {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        this.bild = reader.result as string;
+        this.loading = false;
+      };
+      reader.readAsDataURL(blob); // Convert to base64
     });
-
-    this.bild = bildUrl;
-    this.loading = false;
   }
 
   speichern() {
@@ -48,14 +46,29 @@ export class TraumEditorComponent {
       return; // Fehlermeldung wird im HTML angezeigt
     }
 
-    const traum: Traum = {
-      titel: this.titel,
-      inhalt: this.inhalt,
-      bild: this.bild,
-      datum: new Date().toISOString()
-    };
+    const formData = new FormData();
+    formData.append('title', this.titel);
+    formData.append('content', this.inhalt.trim());
+    if (this.bild) {
+      formData.append('img', this.base64ToFile(this.bild));
+    }
 
-    this.traumService.add(traum);
-    this.router.navigate(['/']);
+    this.traumService.add(formData).subscribe(() => {
+      this.router.navigate(['/']);
+    });
+  }
+
+  base64ToFile(base64: string): File {
+    const arr = base64.split(',');
+    const mime = arr[0].match(/:(.*?);/)![1];
+    const base64string = atob(arr[1]);
+    let n = base64string.length;
+    const uint8Array = new Uint8Array(n);
+
+    while (n--) {
+      uint8Array[n] = base64string.charCodeAt(n);
+    }
+
+    return new File([uint8Array], 'visualization.jpg', { type: mime });
   }
 }

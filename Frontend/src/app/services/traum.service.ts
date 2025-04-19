@@ -1,27 +1,27 @@
 import { Injectable } from '@angular/core';
 import { Traum } from '../models/traum';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/enironment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TraumService {
-  private key = 'traeume';
+  private baseUrl = environment.apiBackendUrl;
 
-  getAll(): Traum[] {
-    const raw = localStorage.getItem(this.key);
-    return raw ? JSON.parse(raw) : [];
+  constructor(private http: HttpClient) {
   }
 
-  add(traum: Traum) {
-    const all = this.getAll();
-    all.push(traum);
-    localStorage.setItem(this.key, JSON.stringify(all));
+  getAll(): Observable<Traum[]> {
+    return this.http.get<Traum[]>(`${this.baseUrl}/dreams`);
   }
 
-  delete(index: number) {
-    const all = this.getAll();
-    all.splice(index, 1);
-    localStorage.setItem(this.key, JSON.stringify(all));
+  add(traum: FormData): Observable<Traum> {
+    return this.http.post<Traum>(`${this.baseUrl}/dreams`, traum);
   }
 
+  delete(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/dreams/${id}`);
+  }
 }
