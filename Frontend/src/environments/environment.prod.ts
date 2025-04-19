@@ -1,3 +1,3 @@
 export const environment = {
-  apiBackendUrl: '/dreams' // todo set correct url
+  apiBackendUrl: '' // todo set correct url
 };
