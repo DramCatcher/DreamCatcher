@@ -1,8 +1,13 @@
 spring:
   datasource:
     url: jdbc:mariadb://localhost:3306/dreamcatcher_db
-    username: db_user_dc
-    password: please_let_us_alone_1990
+    username: ${DB_USER_DC}
+    password: ${DB_PASSWORD}
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 15MB
 
   jpa:
     hibernate:
