@@ -53,6 +53,11 @@ export class TraumEditorComponent {
       formData.append('img', this.base64ToFile(this.bild));
     }
 
+    // Debugging
+    for (const pair of formData.entries()) {
+      console.log(`${pair[0]}:`, pair[1]);
+    }
+
     this.traumService.add(formData).subscribe(() => {
       this.router.navigate(['/']);
     });
