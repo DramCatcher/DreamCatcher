@@ -31,8 +31,8 @@ public class SecurityConfiguration {
             "http://dreamcatcher.galister.ch"
         ));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
-        config.setAllowedHeaders(List.of("*"));
-        config.setAllowCredentials(true);
+        config.setAllowedHeaders(List.of("Content-Type", "Authorization"));
+        config.setAllowCredentials(true);  // Muss bei der Verwendung von Cookies oder Authentifizierung gesetzt werden
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
