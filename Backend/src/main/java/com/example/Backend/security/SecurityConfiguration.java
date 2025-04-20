@@ -26,13 +26,10 @@ public class SecurityConfiguration {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of(
-            "http://localhost:4200",
-            "http://dreamcatcher.galister.ch"
-        ));
+        config.setAllowedOrigins(List.of("http://localhost:4200")); // Dein Frontend
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
-        config.setAllowedHeaders(List.of("Content-Type", "Authorization"));
-        config.setAllowCredentials(true);  // Muss bei der Verwendung von Cookies oder Authentifizierung gesetzt werden
+        config.setAllowedHeaders(List.of("*"));
+        config.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
