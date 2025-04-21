@@ -17,7 +17,7 @@ Spring Boot backend for the DreamCatcher app – used to manage dreams including
    cd DreamCatcher/Backend
    ```
 
-2. Create a `.env` file (based on `.env.example`) and add your database credentials.
+2. Die Datenbankanmeldedaten sind bereits in der `application.yml` konfiguriert.
 
 3. (Optional) Start MariaDB with Docker:
 
@@ -25,20 +25,10 @@ Spring Boot backend for the DreamCatcher app – used to manage dreams including
    docker-compose up -d
    ```
 
-4. Set up the database manually for development:
+4. Configure database:
 
    - Database name: `dreamcatcher_db`
-   - You must create the table manually (e.g. in MySQL Workbench):
-
-     ```sql
-     CREATE TABLE dream (
-       id INT AUTO_INCREMENT PRIMARY KEY,
-       title VARCHAR(255) NOT NULL,
-       content TEXT NOT NULL,
-       timestamp DATETIME NOT NULL,
-       img MEDIUMBLOB
-     );
-     ```
+   - No manual SQL is required - Hibernate will create the tables automatically using JPA's `ddl-auto: update` configuration
 
 5. Start the application:
 
