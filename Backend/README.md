@@ -41,6 +41,19 @@ Spring Boot backend for the DreamCatcher app – used to manage dreams including
 After starting, the Swagger UI is available at:
 
 ```
-http://localhost:8080/swagger-ui/index.html
+http://localhost:8080/api/swagger-ui/index.html
 ```
+
+## Production Deployment
+
+For production deployment, the application is configured to:
+
+1. Listen on all network interfaces (`0.0.0.0`)
+2. Use the `/api` context path
+3. Allow CORS requests from `https://dreamcatcher.galister.ch`
+
+To properly integrate with a web server (Apache/Nginx):
+
+1. Configure a reverse proxy to forward requests from `/api/*` to the Spring Boot application
+2. The frontend should make API requests to `/api/dreams` instead of directly to `/dreams`
 
