@@ -26,12 +26,19 @@ public class SecurityConfiguration {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        // Erlaube alle Ursprünge, aber ohne Credentials
-        config.addAllowedOrigin("*");
-        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
-        config.setAllowedHeaders(List.of("*"));
-        config.setAllowCredentials(false);
 
+        config.addAllowedOrigin("https://dreamcatcher.galister.ch");
+        
+        // Erlaube alle Methoden und Header
+        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        config.setAllowedHeaders(List.of("*"));
+        
+        // Mit Credentials für die spezifische Domain
+        config.setAllowCredentials(true);
+        
+        // Fügt Expose-Headers hinzu (oft nötig für CORS)
+        config.setExposedHeaders(List.of("Access-Control-Allow-Origin", "Access-Control-Allow-Credentials"));
+        
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
         return source;
