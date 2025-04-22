@@ -27,19 +27,23 @@ public class SecurityConfiguration {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
 
-        // Allow both production and development origins
-        config.addAllowedOrigin("https://dreamcatcher.galister.ch");
-        config.addAllowedOrigin("http://localhost:4200");
+        // Allow all origins
+        config.addAllowedOrigin("*");
 
-        // Erlaube alle Methoden und Header
-        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        config.setAllowedHeaders(List.of("*"));
+        // Allow all methods
+        config.addAllowedMethod("*");
 
-        // Mit Credentials für die spezifische Domain
-        config.setAllowCredentials(true);
+        // Allow all headers
+        config.addAllowedHeader("*");
 
-        // Fügt Expose-Headers hinzu (oft nötig für CORS)
+        // Note: We can't use allowCredentials with wildcard origins
+        config.setAllowCredentials(false);
+
+        // Add exposed headers
         config.setExposedHeaders(List.of("Access-Control-Allow-Origin", "Access-Control-Allow-Credentials"));
+
+        // Set max age for preflight cache
+        config.setMaxAge(3600L);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
