@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="95811fe8-8f65-41f2-b6f7-f6fce5ee128e" name="Changes" comment="Fix CORS configuration and image display">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/DreamCatcher.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/example/Backend/resources/dto/DreamCreateDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/Backend/resources/dto/DreamCreateDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/example/Backend/resources/dto/DreamShowDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/Backend/resources/dto/DreamShowDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/example/Backend/resources/dto/DreamUpdateDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/Backend/resources/dto/DreamUpdateDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/example/Backend/resources/entity/Dream.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/example/Backend/resources/entity/Dream.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/package.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="feature/fix-CORSE-5" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;verapas&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/DramCatcher/DreamCatcher.git&quot;,
+    &quot;accountId&quot;: &quot;257198fe-06e7-4d63-9349-b74f47265b66&quot;
+  }
+}</component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2vjDlSkT3fZoarajbHEdBLbqGLK" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Maven.Backend [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.Backend [install].executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Spring Boot.BackendApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/fix-CORSE-6&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/PascalVeraguth/Schule/Modul 245/AktuellesProjekt/DreamCatcher/Backend&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\PascalVeraguth\\Schule\\Modul 245\\AktuellesProjekt\\DreamCatcher\\Frontend\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration name="BackendApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="Backend" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.Backend.BackendApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-125ca727e0f0-intellij.indexing.shared.core-IU-243.23654.117" />
+        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-IU-243.23654.117" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="95811fe8-8f65-41f2-b6f7-f6fce5ee128e" name="Changes" comment="" />
+      <created>1744649741042</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1744649741042</updated>
+      <workItem from="1744649742099" duration="49000" />
+      <workItem from="1744649791610" duration="341000" />
+      <workItem from="1744698125570" duration="30000" />
+      <workItem from="1745004181832" duration="2376000" />
+      <workItem from="1745263498789" duration="815000" />
+      <workItem from="1745301652876" duration="15936000" />
+    </task>
+    <task id="LOCAL-00001" summary="Configure multipart file upload size limits to 10MB/15MB">
+      <option name="closed" value="true" />
+      <created>1745005323500</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1745005323500</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Fix environment configuration import path in frontend&#10;&#10;  - Fix typo in import path from 'enironment.ts' to 'environment.ts'&#10;  - Update local environment configuration to use the correct API path (/api)&#10;  - Ensures frontend correctly communicates with backend in both development and production">
+      <option name="closed" value="true" />
+      <created>1745303204369</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1745303204369</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Just a test-push for triggering auto-deployment">
+      <option name="closed" value="true" />
+      <created>1745304162074</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1745304162074</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Configure production environment file replacement">
+      <option name="closed" value="true" />
+      <created>1745305430058</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1745305430058</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Configure production environment.prod.ts">
+      <option name="closed" value="true" />
+      <created>1745306456734</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1745306456734</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Configure service.ts and environment.ts">
+      <option name="closed" value="true" />
+      <created>1745308926803</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1745308926803</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Allow all origins in CORS configuration for development">
+      <option name="closed" value="true" />
+      <created>1745309603767</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1745309603767</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Fix API endpoint paths by removing redundant /api prefix">
+      <option name="closed" value="true" />
+      <created>1745311608555</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1745311608555</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Fix API backend URL in production environment">
+      <option name="closed" value="true" />
+      <created>1745312498841</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1745312498841</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Fix CORS configuration to use specific origin instead of wildcard pattern">
+      <option name="closed" value="true" />
+      <created>1745312918040</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1745312918040</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Fix CORS configuration to use all credentials, again">
+      <option name="closed" value="true" />
+      <created>1745313853622</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1745313853622</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Fix API backend URL in production environment. again...">
+      <option name="closed" value="true" />
+      <created>1745314282875</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1745314282875</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Fix CORS configuration to allow credentials for specific domain..">
+      <option name="closed" value="true" />
+      <created>1745314648226</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1745314648226</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Fix environment.prod.ts">
+      <option name="closed" value="true" />
+      <created>1745315357130</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1745315357130</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Fix CORS configuration and image display">
+      <option name="closed" value="true" />
+      <created>1745319391909</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1745319391909</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Configure multipart file upload size limits to 10MB/15MB" />
+    <MESSAGE value="Fix environment configuration import path in frontend&#10;&#10;  - Fix typo in import path from 'enironment.ts' to 'environment.ts'&#10;  - Update local environment configuration to use the correct API path (/api)&#10;  - Ensures frontend correctly communicates with backend in both development and production" />
+    <MESSAGE value="Just a test-push for triggering auto-deployment" />
+    <MESSAGE value="Configure production environment file replacement" />
+    <MESSAGE value="Configure production environment.prod.ts" />
+    <MESSAGE value="Configure service.ts and environment.ts" />
+    <MESSAGE value="Allow all origins in CORS configuration for development" />
+    <MESSAGE value="Fix API endpoint paths by removing redundant /api prefix" />
+    <MESSAGE value="Fix API backend URL in production environment" />
+    <MESSAGE value="Fix CORS configuration to use specific origin instead of wildcard pattern" />
+    <MESSAGE value="Fix CORS configuration to use all credentials, again" />
+    <MESSAGE value="Fix API backend URL in production environment. again..." />
+    <MESSAGE value="Fix CORS configuration to allow credentials for specific domain.." />
+    <MESSAGE value="Fix environment.prod.ts" />
+    <MESSAGE value="Fix CORS configuration and image display" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix CORS configuration and image display" />
+  </component>
+</project>
