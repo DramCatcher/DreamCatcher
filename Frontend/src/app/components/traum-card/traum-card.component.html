@@ -9,6 +9,6 @@
   </div>
 
   <div class="bild" *ngIf="bild">
-    <img [src]="bild" alt="Traumbild" />
+    <img [src]="'data:image/png;base64, ' + bild" alt="Traumbild" />
   </div>
 </div>

@@ -27,20 +27,23 @@ public class SecurityConfiguration {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
 
+        // Allow both production and development origins
         config.addAllowedOrigin("https://dreamcatcher.galister.ch");
-        
+        config.addAllowedOrigin("http://localhost:4200");
+
         // Erlaube alle Methoden und Header
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
-        
+
         // Mit Credentials für die spezifische Domain
         config.setAllowCredentials(true);
-        
+
         // Fügt Expose-Headers hinzu (oft nötig für CORS)
         config.setExposedHeaders(List.of("Access-Control-Allow-Origin", "Access-Control-Allow-Credentials"));
-        
+
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
         return source;
     }
+
 }
