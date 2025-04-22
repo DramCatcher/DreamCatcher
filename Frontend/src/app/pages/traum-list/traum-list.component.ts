@@ -30,8 +30,15 @@ export class TraumListComponent implements OnInit {
 
   deleteDream(id?: number) {
     if (id && confirm('Diesen Traum wirklich löschen?')) {
-      this.traumService.delete(id);
-      this.loadDreams()
+      this.traumService.delete(id).subscribe({
+        next: () => {
+          this.loadDreams();
+        },
+        error: (err) => {
+          console.error('Fehler beim Löschen:', err);
+          alert('Fehler beim Löschen des Traums');
+        }
+      });
     }
   }
 
