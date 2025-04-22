@@ -8,9 +8,6 @@ spring:
     multipart:
       max-file-size: 10MB
       max-request-size: 15MB
-      
-server:
-  address: 0.0.0.0
 
   jpa:
     hibernate:
@@ -19,3 +16,26 @@ server:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MariaDBDialect
+
+server:
+  address: 0.0.0.0
+
+# Logging-Konfiguration
+logging:
+  level:
+    # CORS-spezifisches Logging
+    org.springframework.web.cors: DEBUG
+    org.springframework.web.filter.CorsFilter: DEBUG
+
+    # Weitere nützliche Logging-Kategorien für Debugging
+    org.springframework.web: DEBUG
+    org.springframework.security: DEBUG
+    org.springframework.http.converter: DEBUG
+
+    # Root-Logger auf INFO setzen
+    root: INFO
+
+  # Formatierung der Log-Ausgabe
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
