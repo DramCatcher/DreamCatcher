@@ -31,24 +31,21 @@ public class SecurityConfiguration {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
 
-        // Allow all origins
-        config.addAllowedOrigin("*");
-        logger.info("Origin allowed");
+        // Allow specific origins instead of wildcard
+        config.addAllowedOrigin("https://dreamcatcher.galister.ch");
+        config.addAllowedOrigin("http://localhost:4200");
+        logger.info("Origins allowed: https://dreamcatcher.galister.ch, http://localhost:4200");
 
         // Allow all methods
         config.addAllowedMethod("*");
-        logger.info("Method allowed");
+        logger.info("Methods allowed");
 
         // Allow all headers
         config.addAllowedHeader("*");
-        logger.info("Header allowed");
+        logger.info("Headers allowed");
 
-        // Note: We can't use allowCredentials with wildcard origins
+        // No credentials needed, keep it false
         config.setAllowCredentials(false);
-
-        // Add exposed headers
-        config.setExposedHeaders(List.of("Access-Control-Allow-Origin", "Access-Control-Allow-Credentials"));
-        logger.info("setExposedHeaders allowed");
 
         // Set max age for preflight cache
         config.setMaxAge(3600L);
