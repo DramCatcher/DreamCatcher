@@ -14,14 +14,14 @@ export class TraumService {
   }
 
   getAll(): Observable<Traum[]> {
-    return this.http.get<Traum[]>(`${this.baseUrl}/api/dreams`);
+    return this.http.get<Traum[]>(`${this.baseUrl}/dreams`);
   }
 
   add(traum: FormData): Observable<Traum> {
-    return this.http.post<Traum>(`${this.baseUrl}/api/dreams`, traum);
+    return this.http.post<Traum>(`${this.baseUrl}/dreams`, traum);
   }
 
   delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/api/dreams/${id}`);
+    return this.http.delete<void>(`${this.baseUrl}/dreams/${id}`);
   }
 }
