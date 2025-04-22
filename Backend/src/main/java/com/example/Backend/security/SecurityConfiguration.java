@@ -29,18 +29,22 @@ public class SecurityConfiguration {
 
         // Allow all origins
         config.addAllowedOrigin("*");
+        logger.info("Origin allowed");
 
         // Allow all methods
         config.addAllowedMethod("*");
+        logger.info("Method allowed");
 
         // Allow all headers
         config.addAllowedHeader("*");
+        logger.info("Header allowed");
 
         // Note: We can't use allowCredentials with wildcard origins
         config.setAllowCredentials(false);
 
         // Add exposed headers
         config.setExposedHeaders(List.of("Access-Control-Allow-Origin", "Access-Control-Allow-Credentials"));
+        logger.info("setExposedHeaders allowed");
 
         // Set max age for preflight cache
         config.setMaxAge(3600L);
