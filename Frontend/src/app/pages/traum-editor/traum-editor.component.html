@@ -24,7 +24,7 @@
 
   <div *ngIf="bild">
     <h3>Deine Traumvisualisierung</h3>
-    <img [src]="'data:image/png;base64, ' + bild" alt="Traumbild" />
+    <img [src]="bild" alt="Traumbild" />
   </div>
 
   <button (click)="speichern()">Speichern</button>
