@@ -65,6 +65,8 @@ jobs:
           ExecStart=/usr/bin/java -jar /opt/dreamcatcher/backend/target/$BACKEND_FILE
           WorkingDirectory=/opt/dreamcatcher/backend
           Restart=always
+          StandardOutput=journal
+          StandardError=journal
 
           [Install]
           WantedBy=multi-user.target" | sudo tee /etc/systemd/system/dc_backend.service > /dev/null
