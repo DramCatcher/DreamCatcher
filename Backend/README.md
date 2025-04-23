@@ -17,7 +17,7 @@ Spring Boot backend for the DreamCatcher app – used to manage dreams including
    cd DreamCatcher/Backend
    ```
 
-2. Create a `.env` file (based on `.env.example`) and add your database credentials.
+2. Die Datenbankanmeldedaten sind bereits in der `application.yml` konfiguriert.
 
 3. (Optional) Start MariaDB with Docker:
 
@@ -25,20 +25,10 @@ Spring Boot backend for the DreamCatcher app – used to manage dreams including
    docker-compose up -d
    ```
 
-4. Set up the database manually for development:
+4. Configure database:
 
    - Database name: `dreamcatcher_db`
-   - You must create the table manually (e.g. in MySQL Workbench):
-
-     ```sql
-     CREATE TABLE dream (
-       id INT AUTO_INCREMENT PRIMARY KEY,
-       title VARCHAR(255) NOT NULL,
-       content TEXT NOT NULL,
-       timestamp DATETIME NOT NULL,
-       img MEDIUMBLOB
-     );
-     ```
+   - No manual SQL is required - Hibernate will create the tables automatically using JPA's `ddl-auto: update` configuration
 
 5. Start the application:
 
@@ -51,6 +41,19 @@ Spring Boot backend for the DreamCatcher app – used to manage dreams including
 After starting, the Swagger UI is available at:
 
 ```
-http://localhost:8080/swagger-ui/index.html
+http://localhost:8080/api/swagger-ui/index.html
 ```
+
+## Production Deployment
+
+For production deployment, the application is configured to:
+
+1. Listen on all network interfaces (`0.0.0.0`)
+2. Use the `/api` context path
+3. Allow CORS requests from `https://dreamcatcher.galister.ch`
+
+To properly integrate with a web server (Apache/Nginx):
+
+1. Configure a reverse proxy to forward requests from `/api/*` to the Spring Boot application
+2. The frontend should make API requests to `/api/dreams` instead of directly to `/dreams`
 

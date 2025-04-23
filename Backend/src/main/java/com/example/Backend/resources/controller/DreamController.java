@@ -22,7 +22,7 @@ import java.util.List;
  * Verwaltet CRUD-Operationen für Träume.
  */
 @RestController
-@RequestMapping("/dreams")
+@RequestMapping("dreams")
 public class DreamController {
 
     @Autowired

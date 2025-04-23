@@ -20,7 +20,7 @@ public class Dream {
     private String content;
 
     @Lob
-    @Column
+    @Column(columnDefinition = "MEDIUMBLOB")
     private byte[] img;
 
     @Column(length = 255)
