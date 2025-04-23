@@ -73,8 +73,86 @@ MariaDB [dreamcatcher_db]> show grants for 'db_user_dc'@'localhost';
 
 1. Sicherstellen, dass die Voraussetzungen erfüllt sind
 2. Package Repository updaten:
-```bash
+```
 sudo apt update
 ```
+3. Benötigte Packages installieren:
+```
+sudo apt install tree curl openjdk-17-jdk maven -y
+```
+4. Installer von node.js herunterladen und ausführen
+```
+sudo curl -fsSL https://deb.nodesource.com/setup_20.x | sudo bash -
+```
+5. Nodejs installieren
+```
+sudo apt install nodejs -y
+```
+6. Angular cli installieren
+```
+sudo npm install -g @angular/cli
+```
+7. Repository clonen
+```
+git clone https://github.com/DramCatcher/DreamCatcher.git
+```
+8. Backend lokal kopieren
+```
+sudo mkdir -p /opt/dreamcatcher/backend && sudo cp -r DreamCatcher/Backend/* /opt/dreamcatcher/backend/
+```
+9. Benutzername und Passwort für Datenbankbenutzer setzen:
+    - In der [Datei](./Backend/src/main/resources/application.yml) 'username' und 'password' setzen
+10. Backend bauen
+```
+cd /opt/dreamcatcher/backend && sudo mvn clean package
+```
+11. Backend als Systemdienst anlegen
+```
+sudo tee /etc/systemd/system/dc_backend.service > /dev/null <<EOF
+[Unit]
+Description=Dreamcatcher Backend Service
+After=network.target
 
-Die dafür notwendigen Schritte sind im [Workflows](./.github/workflows/deploy_prod.yml) ersichtlich.
+[Service]
+ExecStart=/usr/bin/java -jar /opt/dreamcatcher/backend/target/$(ls /opt/dreamcatcher/backend/target | grep ".jar$")
+WorkingDirectory=/opt/dreamcatcher/backend
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+12. Systemd neuladen
+```
+sudo systemctl daemon-reload
+```
+13. Backend-Dienst einschalten
+```
+sudo systemctl enable dc_backend.service && sudo systemctl start dc_backend.service
+```
+14. Kontrollieren, ob das backend läuft
+```
+if ! systemctl is-active --quiet dc_backend.service; then echo "Backend läuft nicht" 1; else echo "Backend läuft" ; fi
+```
+15. In das GitHub-Repo wechseln
+16. Statische Dateien für das Frontend erstellen
+```
+cd Frontend && npm install && ng build --configuration production
+```
+17. In das GitHub-Repo wechseln
+18. Statische Dateien vom Frontend in den Verzeichnis des Webservers kopieren
+```
+sudo cp Frontend/dist/dream-catcher/browser/* /var/www/<deine-webseite>/
+```
+19. Berechtigungen von neue Dateien anpassen
+```
+sudo chown -R www-data:www-data /var/www/<deine-webseite>
+```
+20. Webserver neustarten beim nginx
+```
+sudo systemctl restart nginx 
+```
+20. Oder Webserver neustarten beim apache
+```
+sudo systemctl restart apache2 
+```
