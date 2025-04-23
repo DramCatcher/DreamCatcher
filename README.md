@@ -45,7 +45,7 @@ Der Grund: Der Server war bereits als funktionierender Webserver im Einsatz.
 3. Eine auf dem Server installierte MariaDB-Datenbank.
     - [Installationsanleitung von DigitalOcean für MariaDB](https://www.digitalocean.com/community/tutorials/how-to-install-mariadb-on-ubuntu-20-04)
     - [Installationsanleitung von MariaDB](https://mariadb.com/kb/en/getting-installing-and-upgrading-mariadb/)
-4. Eine Datenbank und eine Tabelle mit dem nächsten Struktur:
+4. Eine Datenbank und eine Tabelle mit der nächsten Struktur:
 ```
 MariaDB [dreamcatcher_db]> desc dream;
 +-----------+------------+------+-----+---------------------+----------------+
@@ -58,7 +58,7 @@ MariaDB [dreamcatcher_db]> desc dream;
 | img       | mediumblob | YES  |     | NULL                |                |
 +-----------+------------+------+-----+---------------------+----------------+
 ```
-5. Ein benutzer für die Datenbank:
+5. Ein Benutzer für die Datenbank:
 ````
 MariaDB [dreamcatcher_db]> show grants for 'db_user_dc'@'localhost';
 +-----------------------------------------------------------------------------+
@@ -71,7 +71,7 @@ MariaDB [dreamcatcher_db]> show grants for 'db_user_dc'@'localhost';
 
 ### Installation
 
-1. Sicherstellen, dass die Voraussetzungen erfüllt sind
+1. Sicherstellen, das die Voraussetzungen erfüllt sind
 2. Package Repository updaten:
 ```
 sudo apt update
@@ -122,7 +122,7 @@ Restart=always
 WantedBy=multi-user.target
 EOF
 ```
-12. Systemd neuladen
+12. Systemd neu laden
 ```
 sudo systemctl daemon-reload
 ```
@@ -140,19 +140,19 @@ if ! systemctl is-active --quiet dc_backend.service; then echo "Backend läuft n
 cd Frontend && npm install && ng build --configuration production
 ```
 17. In das GitHub-Repo wechseln
-18. Statische Dateien vom Frontend in den Verzeichnis des Webservers kopieren
+18. Statische Dateien vom Frontend in das Verzeichnis des Webservers kopieren
 ```
 sudo cp Frontend/dist/dream-catcher/browser/* /var/www/<deine-webseite>/
 ```
-19. Berechtigungen von neue Dateien anpassen
+19. Berechtigungen von neuen Dateien anpassen
 ```
 sudo chown -R www-data:www-data /var/www/<deine-webseite>
 ```
-20. Webserver neustarten beim nginx
+20. Webserver neu starten beim nginx
 ```
 sudo systemctl restart nginx 
 ```
-20. Oder Webserver neustarten beim apache
+20. Oder Webserver neu starten beim apache
 ```
 sudo systemctl restart apache2 
 ```
