@@ -5,16 +5,15 @@ import com.example.Backend.resources.dto.DreamShowDto;
 import com.example.Backend.resources.dto.DreamUpdateDto;
 import com.example.Backend.resources.services.DreamService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -67,17 +66,8 @@ public class DreamController {
             @ApiResponse(responseCode = "400", description = "Ungültige Eingabedaten.")
     })
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<DreamShowDto> createDream(
-            @RequestPart("title") String title,
-            @RequestPart("content") String content,
-            @RequestPart(value = "img", required = false) MultipartFile img) {
-
-        DreamCreateDto dto = new DreamCreateDto();
-        dto.setTitle(title);
-        dto.setContent(content);
-        dto.setImg(img);
-
-        DreamShowDto created = dreamService.create(dto);
+    public ResponseEntity<DreamShowDto> createDream(@ModelAttribute @Valid DreamCreateDto dreamCreateDto) {
+        DreamShowDto created = dreamService.create(dreamCreateDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 
