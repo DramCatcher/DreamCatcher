@@ -101,7 +101,7 @@ git clone https://github.com/DramCatcher/DreamCatcher.git
 sudo mkdir -p /opt/dreamcatcher/backend && sudo cp -r DreamCatcher/Backend/* /opt/dreamcatcher/backend/
 ```
 9. Benutzername und Passwort für Datenbankbenutzer setzen:
-    - In der [Datei](./Backend/src/main/resources/application.yml) 'username' und 'password' setzen
+    - In der lokal kopierten [Datei](./Backend/src/main/resources/application.yml) 'username' und 'password' setzen
 10. Backend bauen
 ```
 cd /opt/dreamcatcher/backend && sudo mvn clean package
