@@ -4,7 +4,7 @@
 
   <h2>Traum erfassen</h2>
 
-  <input [(ngModel)]="titel" placeholder="Titel" />
+  <input [(ngModel)]="titel" placeholder="Titel"/>
   <div *ngIf="!titel.trim() && versuchZuSpeichern" class="fehlermeldung">
     Bitte gib einen Titel ein.
   </div>
@@ -24,7 +24,7 @@
 
   <div *ngIf="bild">
     <h3>Deine Traumvisualisierung</h3>
-    <img [src]="bild" alt="Traumbild" />
+    <img [src]="bild" alt="Traumbild"/>
   </div>
 
   <button (click)="speichern()">Speichern</button>
