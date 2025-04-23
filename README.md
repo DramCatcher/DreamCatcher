@@ -1,24 +1,14 @@
 # Dream Catcher
 
-Dieses Projekt stellt die zweite Leistungsbeurteilung im Rahmen des Moduls 245 der schulischen Ausbildung an der CsBe in Bern, Schweiz, dar.
 
-**Applikation:** [Dream Catcher](dreamcatcher.galister.ch)
 
-**Ersteller:** *J.S., P.V., F.S., I.G.*
-
-**Dozent:** *M.M.*
-
-**Rollen:**
-- Projektleitung: F.S.
-- Frontend-Entwicklung: J.S.
-- Backend-Entwicklung: P.V.
-- Deployment: I.G.
+Das Projekt ist die zweite Leistungsbeurteilung des Moduls 245 in der schulischen Ausbildung an der CsBe in Bern, Schweiz.
 
 ## Die Applikation
 
-Dream Catcher ist ein Minimum Viable Product (MVP) basierend auf einer im vorherigen Modul entwickelten Start-up-Idee. Der Fokus liegt bewusst auf den zentralen Funktionen:
+[Dream Catcher](https://dreamcatcher.galister.ch) ist ein Minimum Viable Product (MVP) basierend auf einer im vorherigen Modul entwickelten Start-up-Idee. Der Fokus liegt bewusst auf den zentralen Funktionen:
 - Erfassen von Träumen
-- Visualisierung von Trauminhalten
+- Visualisierung von Trauminhalten durch KI
 - Träume speichern
 - Abruf gespeicherter Träume
 
@@ -29,6 +19,62 @@ Dream Catcher ist ein Minimum Viable Product (MVP) basierend auf einer im vorher
 - **Webserver:** Nginx
 - **Datenbank:** MariaDB
 
+### Deployment MVP
+
+Für das Deployment haben wir uns für eine direkte Bereitstellung auf einem Debian-Server entschieden.
+
+Der Grund: Der Server war bereits als funktionierender Webserver im Einsatz.
+
 ## Anleitung
 
-Für das Deployment haben wir uns für eine direkte Bereitstellung auf einem Debian-Server entschieden. Der Grund: Der Server war bereits als funktionierender Webserver im Einsatz. Die dafür notwendigen Schritte sind im [Workflows](./.github/workflows/deploy_prod.yml) ersichtlich.
+### Voraussetzungen
+
+1. Ein Server mit einem Linux-basierten Betriebssystem.
+    - [Installationsanleitung Debian](https://www.debian.org/releases/stable/i386/)
+    - [Installationsanleitung Ubuntu](https://documentation.ubuntu.com/server/tutorial/basic-installation/index.html)
+2. Ein installierter und konfigurierter Webserver, versehen mit einem gültigen TLS-Zertifikat, das von einer öffentlich vertrauenswürdigen Zertifizierungsstelle (Root CA) ausgestellt wurde.
+    - Nginx:
+        - [Installationsanleitung](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/)
+        - [Konfigurationsanleitung](https://nginx.org/en/docs/beginners_guide.html)
+    - Apache:
+        - [Installation- und Konfigurationsanleitung](https://ubuntu.com/tutorials/install-and-configure-apache#3-creating-your-own-website)
+    - TLS-Zertifizierung:
+        - [Anleitung von DigitalOcean für Nginx](https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-20-04)
+        - [Anleitung von DigitalOcean für Apache](https://www.digitalocean.com/community/tutorials/how-to-secure-apache-with-let-s-encrypt-on-ubuntu)
+        - [Anleitung von Nginx](https://nginx.org/en/docs/http/configuring_https_servers.html)
+3. Eine auf dem Server installierte MariaDB-Datenbank.
+    - [Installationsanleitung von DigitalOcean für MariaDB](https://www.digitalocean.com/community/tutorials/how-to-install-mariadb-on-ubuntu-20-04)
+    - [Installationsanleitung von MariaDB](https://mariadb.com/kb/en/getting-installing-and-upgrading-mariadb/)
+4. Eine Datenbank und eine Tabelle mit dem nächsten Struktur:
+```
+MariaDB [dreamcatcher_db]> desc dream;
++-----------+------------+------+-----+---------------------+----------------+
+| Field     | Type       | Null | Key | Default             | Extra          |
++-----------+------------+------+-----+---------------------+----------------+
+| id        | bigint(20) | NO   | PRI | NULL                | auto_increment |
+| timestamp | datetime   | NO   |     | 2025-03-29 15:02:00 |                |
+| title     | tinytext   | NO   |     | NULL                |                |
+| content   | text       | YES  |     | NULL                |                |
+| img       | mediumblob | YES  |     | NULL                |                |
++-----------+------------+------+-----+---------------------+----------------+
+```
+5. Ein benutzer für die Datenbank:
+````
+MariaDB [dreamcatcher_db]> show grants for 'db_user_dc'@'localhost';
++-----------------------------------------------------------------------------+
+| Grants for db_user_dc@localhost                                             |
++-----------------------------------------------------------------------------+
+| GRANT USAGE ON *.* TO `db_user_dc`@`localhost` IDENTIFIED BY PASSWORD 'xxx' |
+| GRANT ALL PRIVILEGES ON `dreamcatcher_db`.* TO `db_user_dc`@`localhost`     |
++-----------------------------------------------------------------------------+
+````
+
+### Installation
+
+1. Sicherstellen, dass die Voraussetzungen erfüllt sind
+2. Package Repository updaten:
+```bash
+sudo apt update
+```
+
+Die dafür notwendigen Schritte sind im [Workflows](./.github/workflows/deploy_prod.yml) ersichtlich.
