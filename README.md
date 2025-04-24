@@ -156,3 +156,66 @@ sudo systemctl restart nginx
 ```
 sudo systemctl restart apache2 
 ```
+21. Die Konfiguration des Webservers muss mit einer Weiterleitung ergänzt werden. Anfragen an das Backend (Pfad /dreams) müssen an localhost:8080/dreams geleitet werden. Ein Beispiel für nginx:
+```
+ gali@webt  ~  cat /etc/nginx/sites-available/dreamcatcher.galister.ch
+server {
+    listen                80;
+    listen [::]:80;
+    server_name           <deiner-webseite>;
+    return                301 https://$host$request_uri;
+}
+
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+
+    root                  /var/www/<deiner-webseite>;
+    index                 index.html;
+
+    server_name <deiner-webseite>;
+
+    ssl_certificate /etc/letsencrypt/live/<deiner-webseite>/cert.pem;
+    ssl_certificate_key /etc/letsencrypt/live/<deiner-webseite>/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+
+    # API Backend proxy with CORS handling
+    location /dreams {
+        # Increase timeout for uploads
+        proxy_connect_timeout 300;
+        proxy_send_timeout 300;
+        proxy_read_timeout 300;
+        send_timeout 300;
+
+        # Configure proxy
+        proxy_pass http://localhost:8080/dreams;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        # Handle OPTIONS requests directly
+        if ($request_method = 'OPTIONS') {
+            add_header 'Access-Control-Allow-Origin' 'https://<deiner-webseite>' always;
+            add_header 'Access-Control-Allow-Methods' 'GET, POST, PUT, DELETE, OPTIONS' always;
+            add_header 'Access-Control-Allow-Headers' 'Origin, X-Requested-With, Content-Type, Accept, Authorization' always;
+            add_header 'Access-Control-Max-Age' 3600 always;
+            add_header 'Content-Type' 'text/plain charset=UTF-8';
+            add_header 'Content-Length' 0;
+            return 204;
+        }
+
+        # Add CORS headers to all responses
+        add_header 'Access-Control-Allow-Origin' 'https://<deiner-webseite>' always;
+        add_header 'Access-Control-Allow-Methods' 'GET, POST, PUT, DELETE, OPTIONS' always;
+        add_header 'Access-Control-Allow-Headers' 'Origin, X-Requested-With, Content-Type, Accept, Authorization' always;
+    }
+
+    # Increase client body size for file uploads (default 1MB)
+    client_max_body_size 10M;
+
+
+}
+```
