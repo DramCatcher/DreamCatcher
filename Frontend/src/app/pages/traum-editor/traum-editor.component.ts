@@ -47,8 +47,8 @@ export class TraumEditorComponent {
     }
 
     const formData = new FormData();
-    formData.append('title', this.titel);
-    formData.append('content', this.inhalt.trim());
+    formData.append('title', new Blob([this.titel], { type: 'text/plain; charset=UTF-8' }));
+    formData.append('content', new Blob([this.inhalt.trim()], { type: 'text/plain; charset=UTF-8' }));
     if (this.bild) {
       formData.append('img', this.base64ToFile(this.bild));
     }
